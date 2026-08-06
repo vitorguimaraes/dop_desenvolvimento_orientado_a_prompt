@@ -146,7 +146,7 @@ O DOP foi desenhado tendo o **Microsoft Copilot** como ferramenta de trabalho, e
 
 No Copilot, esse conceito de espaço persistente por projeto não está disponível na interface de chat comum — não há pastas nem base de conhecimento por projeto, algo que a própria comunidade de usuários vem pedindo à Microsoft. Como não dá para "guardar" o contexto num projeto e voltar a ele, o DOP faz o caminho inverso e igualmente eficaz: mantém a **fonte da verdade fora da ferramenta**, no arquivo `prompt.md` (e nos artefatos auxiliares). Assim, "abrir um novo chat e anexar o prompt" cumpre o mesmo papel que um Project cumpriria — só que de forma manual e portável.
 
-> **Nuance:** dentro da família Microsoft 365 Copilot existe um recurso chamado **Copilot Notebooks**, que agrupa arquivos, chats e páginas como um espaço persistente por tema — o mais próximo de um "projeto". Ainda assim, a experiência de chat comum do Copilot (a que o DOP assume) não oferece esse workspace persistente, o que mantém a rotação de chats como a abordagem padrão do método.
+> **Nuance:** o Microsoft 365 Copilot tem os **Copilot Notebooks**, que agrupam arquivos e chats como um espaço persistente por tema — o mais próximo de um "projeto". Porém, dentro de um Notebook não é possível selecionar o motor de IA (o seletor de modelo só existe nas conversas comuns), e a experiência roda no modelo GPT padrão do Copilot. Como o DOP usa o Claude na fase de desenvolvimento, os Notebooks não substituem o recurso de Projects do Claude — o que mantém a rotação de chats com o prompt.md como a abordagem do método.
 
 ### 2. Higiene de contexto (vale para qualquer ferramenta)
 
