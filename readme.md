@@ -1,6 +1,6 @@
 # DOP — Desenvolvimento Orientado a Prompt
 
-Um método passo a passo para transformar uma ideia em uma aplicação funcional usando IA, mesmo que você não seja uma pessoa técnica. O **DOP (Desenvolvimento Orientado a Prompt)** organiza o trabalho em duas grandes fases — **projetar o pedido** e **construir a aplicação** — e trata a IA ora como um líder técnico que ouve suas necessidades, ora como o desenvolvedor que executa.
+Um método passo a passo para transformar uma ideia em uma aplicação funcional usando IA, mesmo que você não seja uma pessoa técnica. O **DOP (Desenvolvimento Orientado a Prompt)** organiza o trabalho em duas grandes fases — **projetar o pedido** e **construir a aplicação** — e trata a IA ora como um(a) líder técnico(a) que ouve suas necessidades, ora como o(a) desenvolvedor(a) que executa.
 
 ---
 
@@ -136,13 +136,23 @@ Essa ferramenta prepara o código do projeto em arquivos `.txt` (contornando a l
 
 ---
 
-## Boas práticas que sustentam o DOP
+## Por que o DOP cria um novo chat a cada ciclo
 
-- **Um chat por objetivo.** Fase 1 em um chat; cada rodada da Fase 2 em um chat novo. Isso mantém o contexto limpo e focado.
-- **O prompt `.md` é a fonte da verdade.** Toda decisão da aplicação vive nele. Ao regenerá-lo a cada versão, você sempre tem um documento fiel ao estado atual.
-- **Guarde as versões do prompt.** Manter o histórico dos `.md` permite voltar atrás e entender a evolução do projeto.
-- **Você decide, a IA propõe.** Nas questões técnicas, a IA sugere; você aprova ou pede alternativas. O controle do produto é sempre seu.
-- **Envie só o necessário.** Na Fase 2, o gerador de artefatos e o envio sob demanda evitam sobrecarregar a IA com arquivos irrelevantes.
+A troca de chat entre uma fase/versão e outra não é um detalhe — é uma escolha deliberada do método, por **dois motivos** que se somam:
+
+### 1. Limitação da ferramenta (contexto que não persiste)
+
+O DOP foi desenhado tendo o **Microsoft Copilot** como ferramenta de trabalho, e a experiência de chat padrão do Copilot **não possui, hoje, um recurso de "Projeto"** como o do Claude. No Claude, um **Project** é um espaço de trabalho persistente: você sobe documentos para uma base de conhecimento, define instruções fixas e todas as conversas daquele projeto herdam esse contexto automaticamente, sem precisar reenviar nada a cada nova conversa.
+
+No Copilot, esse conceito de espaço persistente por projeto não está disponível na interface de chat comum — não há pastas nem base de conhecimento por projeto, algo que a própria comunidade de usuários vem pedindo à Microsoft. Como não dá para "guardar" o contexto num projeto e voltar a ele, o DOP faz o caminho inverso e igualmente eficaz: mantém a **fonte da verdade fora da ferramenta**, no arquivo `prompt.md` (e nos artefatos auxiliares). Assim, "abrir um novo chat e anexar o prompt" cumpre o mesmo papel que um Project cumpriria — só que de forma manual e portável.
+
+> **Nuance:** dentro da família Microsoft 365 Copilot existe um recurso chamado **Copilot Notebooks**, que agrupa arquivos, chats e páginas como um espaço persistente por tema — o mais próximo de um "projeto". Ainda assim, a experiência de chat comum do Copilot (a que o DOP assume) não oferece esse workspace persistente, o que mantém a rotação de chats como a abordagem padrão do método.
+
+### 2. Higiene de contexto (vale para qualquer ferramenta)
+
+Mesmo em ferramentas que **têm** o conceito de projeto, começar limpo a cada versão traz ganhos por si só. Um chat longo acumula todo o histórico de rascunhos, tentativas e discussões — isso consome espaço da janela de contexto e mistura decisões antigas com as atuais. Ao recomeçar apenas com o `prompt.md` estável, a IA recebe **somente o que importa agora**, o que tende a melhorar o foco e a qualidade das respostas.
+
+Ou seja: a rotação de chats **compensa** a ausência do recurso de projeto no Copilot **e**, ao mesmo tempo, é uma boa prática de contexto que o DOP adotaria de qualquer forma.
 
 ---
 
@@ -169,10 +179,20 @@ Há também respaldo acadêmico para tratar o prompt como artefato de software d
 Situado nesse cenário, o DOP é um SDD do tipo *spec-as-source* combinado com a disciplina de *prompt-as-source* do PDD, com três ênfases próprias que os frameworks maiores não destacam:
 
 - **Dois agentes, dois chats, dois papéis.** A separação explícita entre IA Arquiteta (Fase 1) e IA Desenvolvedora (Fase 2), em conversas distintas, deixa o método simples de seguir mesmo para quem não é técnico.
-- **Higiene de contexto por rotação de chat.** Encerrar o chat e recomeçar limpo a cada versão é uma disciplina deliberada para manter o contexto enxuto e evitar o acúmulo de ruído.
+- **Higiene de contexto por rotação de chat.** Encerrar o chat e recomeçar limpo a cada versão é uma disciplina deliberada para manter o contexto enxuto — e, como visto acima, também compensa a ausência de um recurso de "Projeto" no Copilot.
 - **Alimentação de arquivo sob demanda.** Com o `IA_code_artefacts_generator` e a instrução, no próprio prompt, para a IA pedir apenas o arquivo específico de cada mudança, o desenvolvimento fica muito mais econômico e focado.
 
 Em resumo: o DOP é uma forma acessível e disciplinada de fazer Spec-Driven Development na variação *prompt-as-source*, desenhada para colocar o PO no comando e manter o processo leve do início ao fim.
+
+---
+
+## Boas práticas que sustentam o DOP
+
+- **Um chat por objetivo.** Fase 1 em um chat; cada rodada da Fase 2 em um chat novo. Isso mantém o contexto limpo e focado.
+- **O prompt `.md` é a fonte da verdade.** Toda decisão da aplicação vive nele. Ao regenerá-lo a cada versão, você sempre tem um documento fiel ao estado atual.
+- **Guarde as versões do prompt.** Manter o histórico dos `.md` permite voltar atrás e entender a evolução do projeto.
+- **Você decide, a IA propõe.** Nas questões técnicas, a IA sugere; você aprova ou pede alternativas. O controle do produto é sempre seu.
+- **Envie só o necessário.** Na Fase 2, o gerador de artefatos e o envio sob demanda evitam sobrecarregar a IA com arquivos irrelevantes.
 
 ---
 
@@ -190,6 +210,7 @@ Em resumo: o DOP é uma forma acessível e disciplinada de fazer Spec-Driven Dev
 - **DOP (Desenvolvimento Orientado a Prompt):** o método descrito neste documento — projetar o prompt e depois construir a aplicação a partir dele, em ciclos.
 - **PO (Product Owner):** a pessoa dona do produto, responsável por definir e validar os requisitos. É o seu papel no DOP.
 - **Prompt:** o documento de especificação (em `.md`) que descreve tudo o que a aplicação deve ser e fazer; é a fonte da verdade do projeto.
+- **Projeto (feature de IA):** espaço de trabalho persistente (como o do Claude) que guarda instruções e uma base de conhecimento reutilizada em todas as conversas. O chat comum do Copilot não oferece esse recurso, o que motiva a rotação de chats do DOP.
 - **Stack:** o conjunto de tecnologias usado para construir a aplicação (linguagens, frameworks, banco de dados, infraestrutura).
 - **Homologação:** a etapa de testar e validar a aplicação para confirmar que ela atende ao que foi especificado.
 - **Markdown (`.md`):** um formato de texto simples e legível, usado aqui para escrever e transportar os prompts entre as fases.
