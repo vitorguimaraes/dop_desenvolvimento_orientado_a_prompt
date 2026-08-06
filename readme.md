@@ -1,6 +1,6 @@
 # DOP — Desenvolvimento Orientado a Prompt
 
-Um método passo a passo para transformar uma ideia em uma aplicação funcional usando IA, mesmo que você não seja uma pessoa técnica. O **DOP (Desenvolvimento Orientado a Prompt)** organiza o trabalho em duas grandes fases — **projetar o pedido** e **construir a aplicação** — e trata a IA ora como um(a) líder técnico(a) que ouve suas necessidades, ora como o(a) desenvolvedor(a) que executa.
+Um método passo a passo para transformar uma ideia em uma aplicação funcional usando IA, mesmo que você não seja uma pessoa técnica. O **DOP (Desenvolvimento Orientado a Prompt)** organiza o trabalho em duas grandes fases — **projetar o pedido** e **construir a aplicação** — e trata a IA ora como um líder técnico que ouve suas necessidades, ora como o desenvolvedor que executa.
 
 ---
 
